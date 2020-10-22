@@ -9,7 +9,7 @@ var Stack = function() {
 
 };
 
-
+// Object to store stack methods
 var stackMethods = {
   push: function(value) {
     this.count++;
