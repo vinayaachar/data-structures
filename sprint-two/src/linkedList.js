@@ -13,10 +13,11 @@ var LinkedList = function() {
       list.head = newLink;
       list.tail = newLink;
     } else {
-      list.tail.next = newLink;
-
+      var tail = list.tail;
+      tail.next = newLink;
+      list.tail = newLink;
     }
-
+    this.length++;
   };
 
   list.removeHead = function() {
@@ -29,6 +30,14 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
+    var currentNode = list.head;
+    while (currentNode) {
+      if (target === currentNode.value) {
+        return true;
+      }
+      currentNode = currentNode.next;
+    }
+    return false;
   };
 
   return list;
