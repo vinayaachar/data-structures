@@ -25,8 +25,7 @@ treeMethods.addChild = function(value, parentValue) {
 
 };
 
-treeMethods.contains = function(target, parentValue) {
-  //parentValue = parentValue || this.value;
+treeMethods.contains = function(target) {
   if ( this.value === target) {
     return true;
   }
@@ -36,27 +35,8 @@ treeMethods.contains = function(target, parentValue) {
       return true;
     }
   }
-  
   return false;
 };
-
-// treeMethods.contains = function(target, parentValue) {
-//   parentValue = parentValue || this.value;
-//   console.log('start of contains', parentValue);
-//   //var doesContain = false;
-//   if ( this.value === target) {
-//     return true;
-//   }
-
-//   for (var i = 0; i < this.children.length; i++) {
-//     console.log('start of our iteration');
-//     console.log(target, this.children[i].value);
-//     this.children[i].contains(target, this.children[i].value);
-//   }
-  
-//   return false;
-// };
-
 
 
 /*
