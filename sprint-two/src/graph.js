@@ -15,15 +15,8 @@ Graph.prototype.addNode = function(node) {
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
 Graph.prototype.contains = function(node) {
-  // if key === node, return true
-  for (var key in this.adjacencyLists) {
-    // console.log( typeof key);
-    // console.log('this is the key ' + key);
-    // console.log(typeof node);
-    // console.log('this is the node ' + node);
-    if (key === node.toString()) {
-      return true;
-    }
+  if (this.adjacencyLists[node]) {
+    return true;
   }
   return false;
 };
@@ -31,10 +24,12 @@ Graph.prototype.contains = function(node) {
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
   // step 1.  Remove Edges as well associated with the deleted node
+  var tempArray = this.adjacencyLists[node];
+  for (var i = 0; i < tempArray.length; i++) {
+    this.removeEdge(node, tempArray[i]);
+  }
   // step2. Remove node
-  // look at this nodes adjacency lists
-  // Remove this node from those lists
-  // Finally remove the vertex/node
+  delete this.adjacencyLists[node];
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
@@ -43,14 +38,20 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
   var toNodeHasFromNode = false;
   var fromArrayList = this.adjacencyLists[fromNode];
   var toArrayList = this.adjacencyLists[toNode];
+
+  if (!fromArrayList || !toArrayList) {
+    return false;
+  }
+
+
   for (var i = 0; i < fromArrayList.length; i++) {
-    if (fromArrayList[i] === toNode.toString()) {
+    if (fromArrayList[i] === toNode) {
       fromNodeHasToNode = true;
       break;
     }
   }
   for (var i = 0; i < toArrayList.length; i++) {
-    if (toArrayList[i] === toNode.toString()) {
+    if (toArrayList[i] === fromNode) {
       toNodeHasFromNode = true;
       break;
     }
@@ -94,7 +95,12 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
+  _.each(this.adjacencyLists, function(value, key) {
+    cb(Number(key));
+  });
 };
+
+
 
 /*
  * Complexity: What is the time complexity of the above functions?
