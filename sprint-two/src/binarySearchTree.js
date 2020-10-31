@@ -3,6 +3,7 @@ var BinarySearchTree = function(value) {
   newBinaryTree.value = value;
   newBinaryTree.left = undefined;
   newBinaryTree.right = undefined;
+  newBinaryTree.size = 1;
 
   _.extend(newBinaryTree, binaryTreeMethods);
   return newBinaryTree;
@@ -13,6 +14,7 @@ var binaryTreeMethods = {};
 
 
 binaryTreeMethods.insert = function(value) {
+  this.size++;
   var newNode = BinarySearchTree(value);
   var insertNode = function (currentNode) {
     if (currentNode.value > newNode.value && currentNode.left === undefined) {
@@ -44,11 +46,9 @@ binaryTreeMethods.contains = function (value) {
 };
 
 binaryTreeMethods.depthFirstLog = function (cb) {
-  console.log(cb);
+
   var depthFirstRecurse = function (currentNode) {
-    // if (currentNode.value !== undefined) {
-    //   cb(currentNode.value);
-    // }
+
     cb(currentNode.value);
 
     if (currentNode.left !== undefined) {
@@ -62,9 +62,17 @@ binaryTreeMethods.depthFirstLog = function (cb) {
   depthFirstRecurse(this);
 };
 
+binaryTreeMethods.sizeOfBinaryTree = function () {
+  return this.size;
+};
+
 
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ insert O(log n)
+ contains O(log n)
+ depth first O(n)
+ size O(1)
  */

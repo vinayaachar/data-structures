@@ -3,6 +3,14 @@ var Tree = function(value) {
   newTree.value = value || null;
 
   // your code here
+  if (value === undefined) {
+    newTree.size = 0;
+  } else {
+    newTree.size = 1;
+  }
+
+
+
   newTree.children = []; // fix me
   _.extend(newTree, treeMethods);
   return newTree;
@@ -13,6 +21,7 @@ var treeMethods = {};
 treeMethods.addChild = function(value, parentValue) {
   var newChild = Tree(value);
   parentValue = parentValue || this.value;
+  this.size++;
 
   if (this.value === parentValue) {
     this.children = this.children.concat(newChild);
@@ -22,7 +31,6 @@ treeMethods.addChild = function(value, parentValue) {
   for (var i = 0; i < this.children.length; i++) {
     this.children[i].addChild(value, parentValue);
   }
-
 };
 
 treeMethods.contains = function(target) {
@@ -38,9 +46,16 @@ treeMethods.contains = function(target) {
   return false;
 };
 
+treeMethods.sizeoftree = function () {
+  return this.size;
+};
+
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ add child is O(n)
+ contains is O(n)
+ size is O(1)
  */
 
 

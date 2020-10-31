@@ -56,6 +56,11 @@ setPrototype.remove = function(item) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+
+ we've decided that it is O(1) even though the hash table uses a for loop
+ add O(1)
+ contains O(1)
+ remove O(1)
  */
 
 

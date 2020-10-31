@@ -20,6 +20,22 @@ var LinkedList = function() {
     this.length++;
   };
 
+  list.addAnywhere = function(value, target) {
+    var newLink = Node(value);
+
+    if (list.head === null) {
+      list.head = newLink;
+      list.tail = newLink;
+    } else {
+      var currentNode = list.head;
+      while (currentNode.value !== target) {
+        currentNode = currentNode.next;
+      }
+      newLink.next = currentNode.next;
+      currentNode.next = newLink;
+    }
+  };
+
   list.removeHead = function() {
     //console.log('here');
     var headValue = list.head.value; // 5
