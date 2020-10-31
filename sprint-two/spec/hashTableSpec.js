@@ -47,6 +47,11 @@ describe('hashTable', function() {
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
 
+  it('should be able to pass in values that are not a string', function() {
+    hashTable.insert('Number', 9);
+    expect(hashTable.retrieve('Number')).to.equal(9);
+  });
+
   // (Advanced! Remove the extra "x" when you want the following tests to run)
   xit ('should double in size when needed', function() {
     _.each(people, function(person) {
