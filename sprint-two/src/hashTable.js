@@ -39,7 +39,7 @@ HashTable.prototype.insert = function(k, v) {
   this._storage.set(index, bucket);
   //step2 : Check to see if bucked exists
   //step3: : if no bucked, define a bucket
-  //add tuple to bucket, which is 2 item array [[k, v], [k1, v1], [k3, v3]]
+  //add tuple to bucket, which is 2 item array [[k, v],  [k1, v1], [k3, v3]]
 };
 
 HashTable.prototype.retrieve = function(k) {
